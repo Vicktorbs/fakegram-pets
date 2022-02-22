@@ -13,3 +13,16 @@ const fadeInKeyfram = keyframes`
 
 export const fadeIn = ({ time = '1s', type = 'ease' } = {}) =>
     css`animation: ${ time } ${fadeInKeyfram} ${ type };`
+
+    const scaleDown = keyframes`
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(0.5);
+    }
+`;
+
+export const scale = ({time='1s', type='ease'} = {})=> css `
+    animation: ${time} ${scaleDown} ${type};
+`;
