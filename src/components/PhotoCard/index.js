@@ -1,34 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Article, Button, Img, ImgWrapper } from './styles';
-import { MdFavoriteBorder } from 'react-icons/md'
+import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
+import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { useNearScree } from '../../hooks/useNearScreen';
 
 const DEFAULT_IMAGE = 'https://res.cloudinary.com/midudev/image/upload/w_150/v1555671700/category_cats.jpg'
 
 export const PhotoCard = ({ id, likes = 0, src=DEFAULT_IMAGE }) => {
 
-    const element = useRef(null);
-    const [show, setShow] = useState(false)
+    const [show, element] = useNearScree()
+    const key = `like-${id}`
+    const [liked, setLiked] = useLocalStorage(key, false)
 
-    useEffect(function () {
-        // console.log(element.current);
-        Promise.resolve(
-            typeof window.IntersectionObserver !== 'indefined'
-                ? window.IntersectionObserver
-                : import('intersection-observer')
-        ).then(() => {
-            const observer = new window.IntersectionObserver(function (entries) {
-                // console.log(entries);
-                const { isIntersecting } = entries[0]
-                // console.log(isIntersecting);
-                if (isIntersecting) {
-                    // console.log('si');
-                    setShow(true)
-                    observer.disconnect()
-                }
-            })
-            observer.observe(element.current)
-        })
-    }, [element])
+
+    const Icon = liked ? MdFavorite : MdFavoriteBorder;
+
 
     return (
         <Article ref={element}>
@@ -40,8 +26,8 @@ export const PhotoCard = ({ id, likes = 0, src=DEFAULT_IMAGE }) => {
                         </ImgWrapper>
                     </a>
 
-                    <Button>
-                        <MdFavoriteBorder size='25px' />{ likes } likes!
+                    <Button onClick={() => setLiked(!liked)}>
+                        <Icon size='25px' />{ likes } likes!
                     </Button>
                 </>
             }
