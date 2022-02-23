@@ -25,15 +25,6 @@ export const Img = styled.img`
     width: 100%;
 `
 
-export const Button = styled.button`
-    display: flex;
-    align-items: center;
-    padding-top: 8px;
-    & svg {
-        margin-right: 4px;
-    }
-`
-
 export const ImgLoading = styled.div`
     box-shadow: 0 10px 14px rgba(0, 0, 0, .2);
     border-radius: 10px;
