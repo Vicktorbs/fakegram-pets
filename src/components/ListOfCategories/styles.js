@@ -1,10 +1,10 @@
 import styled, { css } from "styled-components";
 import { fadeIn, scale } from "../../styles/animation";
 
+
 export const List = styled.ul`
     display: flex;
-    overflow: sroll;
-    overflow-x: hidden;
+    overflow-x: scroll;
     width: 100%;
     ${props => props.fixed && css`
     {
@@ -23,6 +23,9 @@ export const List = styled.ul`
         z-index: 1;
     }
     `}
+    &::-webkit-scrollbar {
+    display: none;
+}
 `
 
 export const Item = styled.li`
