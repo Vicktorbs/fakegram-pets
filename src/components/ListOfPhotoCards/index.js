@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
 import { PhotoCard } from '../PhotoCard';
+import { ImgLoadingComponent } from '../PhotoCard/ImgLoading';
 
 const withPhotos = gql`
     query getPhotos($categoryId: ID) {
@@ -17,7 +18,7 @@ const withPhotos = gql`
 
 export const ListOfPhotoCards = ({ categoryId }) => {
     const { data, loading, error } = useQuery(withPhotos, { variables: { categoryId: categoryId } })  // destructuras la data y el estado de loading y error
-    if (loading) return 'Loading...' // manejas el estado para que no te saque error mientras hace el fetch
+    if (loading) return <ImgLoadingComponent /> // manejas el estado para que no te saque error mientras hace el fetch
     if (error) return <pre>{error.message}</pre>
     return (
         <ul>

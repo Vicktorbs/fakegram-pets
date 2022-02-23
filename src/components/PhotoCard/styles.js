@@ -33,3 +33,24 @@ export const Button = styled.button`
         margin-right: 4px;
     }
 `
+
+export const ImgLoading = styled.div`
+    box-shadow: 0 10px 14px rgba(0, 0, 0, .2);
+    border-radius: 10px;
+    height: 250px;
+    object-fit: cover;
+    background-color: #e7e7de;
+    top: 0;
+    width: 100%;
+`
+
+export const ButtonLoading = styled.button`
+    margin-top: 10px;
+    padding-top: 8px;
+    display: flex;
+    align-items: center;
+    background-color: #e7e7de;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+`
