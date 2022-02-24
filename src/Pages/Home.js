@@ -5,7 +5,6 @@ import { ListOfPhotoCards } from '../components/ListOfPhotoCards';
 
 export const Home = () => {
     const { id } = useParams()
-    console.log(id);
     return (
         <>
             <ListOfCategories />
