@@ -1,9 +1,10 @@
 import React from 'react';
-import { Article, Img, ImgWrapper } from './styles';
+import { Article, Img, ImgWrapper, Link } from './styles';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { useNearScree } from '../../hooks/useNearScreen';
 import { FavButton } from '../FavButton';
 import { ToggleLikeMutation } from '../../containers/ToggleLikeMutation';
+// import { Link } from 'react-router-dom';
 
 const DEFAULT_IMAGE = 'https://res.cloudinary.com/midudev/image/upload/w_150/v1555671700/category_cats.jpg'
 
@@ -19,11 +20,11 @@ export const PhotoCard = ({ id, likes = 0, src=DEFAULT_IMAGE }) => {
         <Article ref={element}>
             {
                 show && <>
-                    <a href={`/detail/${id}`} >
+                    <Link to={`/detail/${id}`} >
                         <ImgWrapper>
                             <Img src={src} />
                         </ImgWrapper>
-                    </a>
+                    </Link>
 
                 <ToggleLikeMutation>
                     {
