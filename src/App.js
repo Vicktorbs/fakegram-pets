@@ -10,10 +10,7 @@ import { Navbar } from './components/Navbar'
 import { Favs } from './Pages/Favs'
 import { NotRegisterUser } from './Pages/NotRegisterUser'
 import { User } from './Pages/User'
-
-const UserLogged = ({ children }) => {
-    return children({ isAuth: true })
-}
+import Context from './Contex'
 
 export const App = () => {
 
@@ -25,24 +22,24 @@ export const App = () => {
                 <GlobalStyle />
                 <Logo />
                 <Routes>
-                    <Route path='/' element={<Home />} />
+                    <Route exact path='/' element={<Home />} />
                     <Route path='/pet/:id' element={<Home />} />
                     <Route path='/detail/:detailId' element={<Detail />} />
                 </Routes>
-                <UserLogged>
+                <Context.Consumer>
                     {
                         ({ isAuth }) =>
                             isAuth
                                 ? <Routes>
-                                    <Route path='/favs' element={<Favs />} />
+                                    <Route exact path='/favs' element={<Favs />} />
                                     <Route path='/user' element={<User />} />
-                                    </Routes>
+                                </Routes>
                                 : <Routes>
                                     <Route path='/favs' element={<NotRegisterUser />} />
                                     <Route path='/user' element={<NotRegisterUser />} />
                                 </Routes>
                     }
-                </UserLogged>
+                </Context.Consumer>
                 <Navbar />
             </BrowserRouter>
         </>

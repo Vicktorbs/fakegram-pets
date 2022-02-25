@@ -6,6 +6,7 @@ import {
     ApolloProvider
 } from '@apollo/client'
 import { App } from './App'
+import Context from './Contex'
 
 const client = new ApolloClient({
     uri: 'https://petagram-vicktorbs-et23d8awc-vicktorbs.vercel.app/graphql',
@@ -14,8 +15,10 @@ const client = new ApolloClient({
 
 
 ReactDom.render(
-    <ApolloProvider client={client}>
-        <App />
-    </ApolloProvider>,
+    <Context.Provider>
+        <ApolloProvider client={client}>
+            <App />
+        </ApolloProvider>
+    </Context.Provider>,
     document.getElementById('app')
 )
