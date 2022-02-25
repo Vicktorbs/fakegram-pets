@@ -2,6 +2,7 @@ import React from 'react';
 import Contex from '../Contex';
 import { UserForm } from '../components/UserForm'
 import { RegisterMutation } from '../containers/RegisterMutation';
+import { LoginMutation } from '../containers/LoginMutation';
 
 export const NotRegisterUser = () => (
     <Contex.Consumer>
@@ -18,11 +19,25 @@ export const NotRegisterUser = () => (
                                 }
                                 const errorMsg = error && 'User already exists.'
 
-                                return <UserForm disabled={loading} error={errorMsg} title='Log In' onSubmit={onSubmit}/>
+                                return <UserForm disabled={loading} error={errorMsg} title='Registrarse' onSubmit={onSubmit}/>
                             }
                         }
                     </RegisterMutation>
-                    <UserForm title={'Iniciar sesion'} onSubmit={activateAuth} />
+
+                    <LoginMutation>
+                        {
+                            (login, { data, loading, error }) => {
+                                const onSubmit = ({ email, password }) => {
+                                    const input = { email, password }
+                                    const variables = { input }
+                                    login({ variables }).then(activateAuth)
+                                }
+                                const errorMsg = error && 'Usuario no encontrado'
+
+                                return <UserForm disabled={loading} error={errorMsg} title={'Iniciar sesion'} onSubmit={onSubmit} />
+                            }
+                        }
+                    </LoginMutation>
                 </>
             }
         }
