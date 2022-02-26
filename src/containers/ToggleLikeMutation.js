@@ -3,8 +3,8 @@ import { Mutation } from '@apollo/client/react/components';
 import React from 'react';
 
 const LIKE_PHOTO = gql`
-mutation likeAnonymousPhoto($input: LikePhoto!) {
-    likeAnonymousPhoto(input: $input) {
+mutation likePhoto($input: LikePhoto!) {
+    likePhoto(input: $input) {
         id,
         liked,
         likes
