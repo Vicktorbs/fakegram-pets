@@ -1,9 +1,9 @@
 import React from 'react';
+import { Layout } from '../components/Layout';
 import { FavsWithQuery } from '../containers/GetFavorites';
 
 export const Favs = () => (
-    <>
-        <h1>Favs</h1>
+    <Layout title='Fakegram - Tus favoritos' subtitle='Aqui puedes encotnrar tus favoritos' >
         <FavsWithQuery />
-    </>
+    </Layout>
 )
