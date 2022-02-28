@@ -1,7 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-WebpackPwaManifestPlugin = require('webpack-pwa-manifest')
+const WebpackPwaManifestPlugin = require('webpack-pwa-manifest')
 const path = require('path')
-
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin')
 module.exports = {
   output: {
     filename: 'app.bundle.js',
@@ -20,8 +20,26 @@ module.exports = {
       icons: [
         {
           src: path.resolve('src/assets/icon.png'),
-          sizes: [96, 128, 192, 256, 384, 512],
+          sizes: [96, 128, 144, 180, 192, 256, 384, 512],
           purpose: 'maskable'
+        }
+      ]
+    }),
+    new WorkboxWebpackPlugin.GenerateSW({
+      runtimeCaching: [
+        {
+          urlPattern: new RegExp('https://(res.cloudinary.com|images.unsplash.com)'),
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'images'
+          }
+        },
+        {
+          urlPattern: new RegExp('https://petagram-vicktorbs.vercel.app/'),
+          handler: 'NetworkFirst',
+          options: {
+            cacheName: 'api'
+          }
         }
       ]
     })
